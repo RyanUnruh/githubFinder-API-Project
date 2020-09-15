@@ -37,10 +37,29 @@ class UI {
     this.profile.innerHTML = "";
   }
 
+  // Clear alert
+
+  clearAlert() {
+    const currentAlert = document.querySelector(".alert");
+
+    if (currentAlert) {
+      currentAlert.remove();
+    }
+  }
+
   // Show alert in profile
   showAlert(msg, className) {
-    const div = document.createElement("div")
-    
- 
+    // Clear alert
+    this.clearAlert();
+    const div = document.createElement("div");
+    div.className = className;
+    div.appendChild(document.createTextNode(msg));
+    const container = document.querySelector(".search-container");
+    const search = document.querySelector(".search");
+    container.insertBefore(div, search);
+    // timeout after 3 sec
+    setTimeout(() => {
+      this.clearAlert();
+    }, 2000);
   }
 }
